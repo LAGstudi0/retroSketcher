@@ -1,17 +1,62 @@
-var columns = 64;
-var rows = 64;
+// global variables 
+let color = 'black';
+let click = true;
 
-var grid = document.createElement('div');
-grid.className = 'grid';
-for(var i = 0; i < columns; i++)    {
-    var column = document.createElement('div');
-    column.className = 'column';
-    for(var j = 0; j < rows; j++)   {
-        var row = document.createElement('div');
-        row.className = 'row';
-        column.appendChild(row);
-    }
-    grid.appendChild(column);
-
+function populateBoard(size)  {
+let board = document.querySelector('.board');
+let squares = board.querySelectorAll('div');
+squares.forEach((div) => div.remove());
+board.style.gridTemplateColumns =  `repeat(${size}, 1fr)`;
+board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+let amount = size * size;
+for(let i = 0; i < amount; i++)    {
+    let square = document.createElement('div');
+    square.addEventListener('mouseover', colorSquare);
+    square.style.backgroundColor = 'white';
+    board.insertAdjacentElement('beforeend', square);
 }
-document.body.appendChild(grid);
+}
+function colorSquare()  {
+    if(click)   {
+        if(color === 'random'){
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+        else{
+            this.style.backgroundColor = color;
+        }
+    }
+}
+
+
+
+function changeColor(choice)  {
+color = choice;
+}
+
+populateBoard(16);
+
+function changeSize(input)  {
+    if(input >= 2 || input < 100)
+         populateBoard(input);
+    else{
+        console.log("too many squares");
+    }
+}
+
+function resetBoard()   {
+    let board = document.querySelector('.board');
+    let squares = board.querySelectorAll('div');
+    squares.forEach((div) => div.style.backgroundColor = 'white');
+}
+
+document.querySelector('body').addEventListener('click', (e) =>{
+    if(e.target.tagName =! 'BUTTON')    {
+        if(click)   {
+            document.querySelector('.mode').textContent = 'Mode: Coloring';
+        }
+        else    {
+            document.querySelector('.mode').textContent = 'Mode: Not Coloring';
+        }
+    }
+});
+

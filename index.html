@@ -1,12 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>RETRO SKETCHER</title>
-        <script src="script.js" defer></script>
+        <!-- <link rel="stylesheet" href="reset.css" -->
         <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
     </head>
     <body>
-        <h1>RETRO SKETCHER</h1>
+        
+            <div class="title"><h1>SKETCHER</h1></div>
+            <div class="mode">Mode: coloring</div>
+            <div class="content">
+                <div class="right-bar">
+                    <div class="button1">
+                        <button onclick="changeColor('black')">Black</button>
+                        <button onclick="changeColor('white')">Eraser</button>
+                        <button onclick="changeColor('gray')">Grey</button>
+                    </div>
+                </div>
+                
+                <div class="board"></div>
+                <div class="left-bar">
+                    <div class="button2">
+                        <button onclick="changeColor('random')">Random</button>
+                        <button onclick="resetBoard ()">Reset</button>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Size of board" value="16" onchange="changeSize(this.value)"/>
+                        <button>Set Size</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="footer">Paolo Milutinovic Martinez</div>
     </body>
 </html>
