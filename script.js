@@ -23,6 +23,7 @@ function colorSquare()  {
         }
         else{
             this.style.backgroundColor = color;
+            
         }
     }
 }
@@ -49,13 +50,30 @@ function resetBoard()   {
     squares.forEach((div) => div.style.backgroundColor = 'white');
 }
 
+
+const mode = document.querySelector('.mode');
+// creating image when is coloring
+const imgColoring = new Image(30, 30);
+imgColoring.src = "images/logoPaintingYes.png";
+
+// creating image when is not coloring
+const imgNotColoring = new Image(30, 30);
+imgNotColoring.src = "images/logoNotPainting.png";
+mode.appendChild(imgColoring);
 document.querySelector('body').addEventListener('click', (e) =>{
-    if(e.target.tagName =! 'BUTTON')    {
+    if(e.target.tagName != 'BUTTON')    {
+        click = !click;
         if(click)   {
+            
             document.querySelector('.mode').textContent = 'Mode: Coloring';
+            mode.appendChild(imgColoring);
+
+
         }
         else    {
             document.querySelector('.mode').textContent = 'Mode: Not Coloring';
+            mode.appendChild(imgNotColoring);
+
         }
     }
 });
